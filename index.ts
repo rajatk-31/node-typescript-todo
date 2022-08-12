@@ -1,11 +1,10 @@
-import app from "./app";
-import mongoose from "./db";
+import app from "./src/app";
+import Mongoose from "./src/db";
 
 app.listen(5000, () => {
   console.log("Port started at 5000");
 
-  mongoose
-    .connect("mongodb://localhost:27017/todoapp")
+  Mongoose.connect("mongodb://localhost:27017/todoapp")
     .then(() => {
       console.log("Connected to the database");
     })

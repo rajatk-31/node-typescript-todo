@@ -1,16 +1,26 @@
-{
-    "compilerOptions": {
-      "target": "es2015",
-      "lib": ["es2015"],
-      "types": [ "node"],
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "allowSyntheticDefaultImports": true,
-      "sourceMap": true,
-      "declaration": false,
-      "allowJs": true
+{ 
+    "compilerOptions":{ 
+       "target":"es6",
+       "module":"commonjs",
+       "declaration": true,
+       "emitDecoratorMetadata":true,
+       "experimentalDecorators":true,
+       "outDir":"dist/",
+       "listFiles":true,
+       "types": ["node"],
+       "noEmitHelpers":false,
+       "alwaysStrict": true,
+       "suppressImplicitAnyIndexErrors": false,
+       "forceConsistentCasingInFileNames": true,
+       "noImplicitAny": false,
+       "diagnostics": true
     },
-    "exclude": ["node_modules"]
-  }
+    "include":[ 
+       "src/**/*"
+    ],
+    "exclude":[ 
+       "node_modules",
+       "src/__tests__/*"
+    ],
+    "compileOnSave":false
+}
