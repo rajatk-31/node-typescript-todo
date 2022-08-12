@@ -6,3 +6,5 @@ const todoRouter = Router();
 const todoCtrl = new TodoController();
 todoRouter.get("/", todoCtrl.get);
 todoRouter.post("/", todoCtrl.post);
+
+export default todoRouter;
