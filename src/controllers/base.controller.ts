@@ -1,26 +1,44 @@
-import { Request, Response } from "express";
-import mongoose from "mongoose";
+import { Request, Response } from 'express'
+import mongoose from '../db'
 
-export default class BaseController {
-  model: mongoose.Model<any, any>;
-  modelName: string;
+export default class BaseController{
 
-  constructor(model: mongoose.Model<any, any>) {
-    this.model = model;
-    this.modelName = model.modelName;
-  }
+    model: mongoose.Model<any, any>
+    modelName: string
 
-  post = (req: Request, res: Response) => {
-    res.json({
-      success: true,
-      msg: "Hello",
-    });
-  };
+    constructor(model: mongoose.Model<any, any>){
+        this.model = model
+        this.modelName = model.modelName
+    }
+    
+    post = async (req: Request, res: Response) => {
+        try {
+            const data = req.body
+            const dbData = await this.model.create(data)
+            res.send(dbData)
+        } catch (error) {
+            res.status(400).send(`Error in POST ${this.modelName}`)
+        }
+    }
 
-  get = (req: Request, res: Response) => {
-    res.json({
-      success: true,
-      msg: "Hello",
-    });
-  };
+    get = async (req: Request, res: Response) => {
+        try {
+            const dbData = await this.model.find().populate("comments")
+            res.send(dbData)
+        } catch (error) {
+            res.status(400).send(`Error in GET ${this.modelName}`)
+        }
+    }
+
+    getById = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.params
+            
+            const dbData = await this.model.find({_id: id})
+            res.send(dbData)
+        } catch (error) {
+            res.status(400).send(`Error in GET ${this.modelName}`)
+        }
+    }
+
 }

@@ -1,3 +1,4 @@
-import * as Mongoose from "mongoose";
+import * as mongoose from 'mongoose'
 
-export default Mongoose;
+
+export default mongoose
